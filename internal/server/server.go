@@ -17,8 +17,8 @@ type CommitLog interface {
 
 var _ api.LogServer = (*grpcServer)(nil)
 
-func NewGRPCServer(config *Config) (*grpc.Server, error) {
-	grsv := grpc.NewServer()
+func NewGRPCServer(config *Config, opts ...grpc.ServerOption) (*grpc.Server, error) {
+	grsv := grpc.NewServer(opts...)
 	srv, err := newgrpcServer(config)
 	if err != nil {
 		return nil, err
